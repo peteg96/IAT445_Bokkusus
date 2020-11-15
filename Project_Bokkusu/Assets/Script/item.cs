@@ -15,6 +15,7 @@ public class item : MonoBehaviour
     {
         if (grabable)
         {
+            
             if (state)
             {
                 this.GetComponent<Rigidbody>().useGravity = false;
@@ -27,7 +28,11 @@ public class item : MonoBehaviour
                 this.GetComponent<Rigidbody>().useGravity = true;
                 this.GetComponent<BoxCollider>().enabled = true;
             }
-            if (Input.GetMouseButton(0) == false) state = false;
+            if (Input.GetMouseButton(0) == false)
+            {
+                state = false;
+                holder.GetComponent<state_detector>().isholding = false;
+            }
 
         }
     }
@@ -41,7 +46,7 @@ public class item : MonoBehaviour
     {
         if (other.tag == "base1" && Input.GetMouseButton(0) == false && triggered == false)
         {
-            this.transform.position = new Vector3(28, this.transform.position.y, 35);
+            this.transform.position = new Vector3(other.transform.position.x, 2, other.transform.position.z);
             this.transform.rotation = new Quaternion(0, 0, 0, 0);
             this.GetComponent<Rigidbody>().useGravity = true;
             this.GetComponent<BoxCollider>().enabled = true;
@@ -50,12 +55,12 @@ public class item : MonoBehaviour
             lights.SetActive(true);
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
-        if (other.tag == "Player")
+        if (other.tag == "Player" && holder.GetComponent<state_detector>().isholding == false)
         {
             print(Input.GetMouseButton(0));
             if (Input.GetMouseButton(0)) state = true;
         }
-        if (other.tag == "base1" && triggered)
+        if (other.tag == this.tag && triggered)
         {
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 4.8f, ForceMode.Acceleration);
             grabable = false;
