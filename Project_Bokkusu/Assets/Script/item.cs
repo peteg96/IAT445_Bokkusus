@@ -44,7 +44,7 @@ public class item : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "base1" && Input.GetMouseButton(0) == false && triggered == false)
+        if (other.tag == this.tag && Input.GetMouseButton(0) == false && triggered == false)
         {
             this.transform.position = new Vector3(other.transform.position.x, 2, other.transform.position.z);
             this.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -59,6 +59,8 @@ public class item : MonoBehaviour
         {
             print(Input.GetMouseButton(0));
             if (Input.GetMouseButton(0)) state = true;
+            holder.GetComponent<state_detector>().isholding = true;
+
         }
         if (other.tag == this.tag && triggered)
         {
