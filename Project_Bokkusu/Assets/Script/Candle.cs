@@ -6,7 +6,7 @@ public class Candle : MonoBehaviour
 {
     
     public GameObject light;
-  
+    public GameObject fire;
    
     bool state = true;
 
@@ -19,12 +19,13 @@ public class Candle : MonoBehaviour
         
         if (col.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.E))
         {
+            print(1);
             if (state == true) state = false;
             else state = true;
             //switch the state 
         }
         light.SetActive(state);// turn on or off the light
-        
+        fire.SetActive(state);
         
     }
 
