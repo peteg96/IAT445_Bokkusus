@@ -19,7 +19,7 @@ public class Candle : MonoBehaviour
         
         if (col.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.E))
         {
-            print(1);
+           
             if (state == true) state = false;
             else state = true;
             //switch the state 
