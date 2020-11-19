@@ -39,7 +39,7 @@ public class item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+       
     }
 
     private void OnTriggerStay(Collider other)
@@ -51,6 +51,7 @@ public class item : MonoBehaviour
             this.GetComponent<Rigidbody>().useGravity = true;
             this.GetComponent<BoxCollider>().enabled = true;
             triggered = true;
+            holder.GetComponent<state_detector>().num += 1;
             texts.SetActive(true);
             lights.SetActive(true);
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
