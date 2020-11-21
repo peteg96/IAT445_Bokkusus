@@ -47,7 +47,7 @@ public class item : MonoBehaviour
         if (other.tag == this.tag && Input.GetMouseButton(0) == false && triggered == false)
         {
             this.transform.position = new Vector3(other.transform.position.x, 2, other.transform.position.z);
-            this.transform.rotation = new Quaternion(0, 0, 0, 0);
+            this.transform.rotation = new Quaternion(0, 90, 0, 0);
             this.GetComponent<Rigidbody>().useGravity = true;
             this.GetComponent<BoxCollider>().enabled = true;
             triggered = true;
@@ -58,7 +58,6 @@ public class item : MonoBehaviour
         }
         if (other.tag == "Player" && holder.GetComponent<state_detector>().isholding == false)
         {
-            print(Input.GetMouseButton(0));
             if (Input.GetMouseButton(0)) state = true;
             holder.GetComponent<state_detector>().isholding = true;
 

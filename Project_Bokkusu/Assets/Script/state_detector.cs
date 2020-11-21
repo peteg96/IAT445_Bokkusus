@@ -17,7 +17,7 @@ public class state_detector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(num);
+
         if (num == 6) seal.SetActive(false);
 
     }
