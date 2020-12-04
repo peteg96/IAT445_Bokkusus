@@ -5,27 +5,63 @@ using UnityEngine;
 public class dooropen : MonoBehaviour
 {
     public Animator doorL, doorR;
+    public GameObject lefthouse, leftGame, rightthouse, character;
+    private int left = 0, right = 0;
     // Start is called before the first frame update
     void Start()
     {
-        //doorL = GetComponent<Animator>();
-        //doorR = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(leftGame.GetComponent<game_light>().state && this.tag == "LeftDoor")
+        {
+            doorL.SetInteger("state", 1);
+            doorR.SetInteger("state", 1);
+            left = 1;
+        }
+        if (character.GetComponent<state_detector>().num == 6 && this.tag == "RightDoor")
+        {
+            doorL.SetInteger("state", 1);
+            doorR.SetInteger("state", 1);
+            right = 1;
+        }
+        print(left + right);
+        if (this.tag == "BackDoor" && character.GetComponent<state_detector>().num == 6 && leftGame.GetComponent<game_light>().state)
+        {
+            doorL.SetInteger("state", 1);
+            doorR.SetInteger("state", 1);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
-            //print(doorLeft.SetInteger("state"));
-            doorL.SetInteger("state", 1);
-            doorR.SetInteger("state", 1);
+            if (this.tag == "LeftDoor")
+            {
+                if (lefthouse.GetComponent<roomCheck>().inRoomCheck == false)
+                {
+                    doorL.SetInteger("state", 1);
+                    doorR.SetInteger("state", 1);
+                }
+            }
+            else if (this.tag == "RightDoor")
+            {
+                if (rightthouse.GetComponent<roomCheck>().inRoomCheck == false)
+                {
+                    doorL.SetInteger("state", 1);
+                    doorR.SetInteger("state", 1);
+                }
+            }
+            else if (this.tag == "BackDoor") { }
+            else
+            {
+                doorL.SetInteger("state", 1);
+                doorR.SetInteger("state", 1);
+            }
         }
     }
 
