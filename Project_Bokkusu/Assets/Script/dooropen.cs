@@ -68,13 +68,15 @@ public class dooropen : MonoBehaviour
                     doorR.SetInteger("state", 1);
                 }
             }
-            else if (this.tag == "fontDoor") {
+            else if (this.tag == "fontDoor")
+            {
                 if (mainhouse.GetComponent<roomCheck>().inRoomCheck == false)
                 {
                     doorL.SetInteger("state", 1);
                     doorR.SetInteger("state", 1);
                 }
             }
+            else if (this.tag == "BackDoor") { }
             else
             {
                 doorL.SetInteger("state", 1);
