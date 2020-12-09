@@ -33,7 +33,14 @@ public class Transparency : MonoBehaviour
                 var material = girl.transform.GetChild(i);
                 material.GetComponent<Renderer>().enabled = true;
             }
-            t += 0.0006f;
+            t += 0.0005f;
+
+            if (t >= 0.2f)//fade music
+            {
+                print(girl.GetComponent<AudioSource>().volume);
+                girl.GetComponent<AudioSource>().volume -= 0.001f;
+            }
+
             if (t >= 0.5f)
             {
                 t = 0.5f;
