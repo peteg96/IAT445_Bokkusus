@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718277829061516760}
   m_Layer: 0
-  m_Name: Kimono Girl 1
+  m_Name: Kimono Girl P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2274090305892019849, guid: 00414ab3595b06542a191cd024016340, type: 3}
+  - {fileID: 2100000, guid: 9736c388f4bba03429c6b672bbedb228, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2274090305892019849, guid: 00414ab3595b06542a191cd024016340, type: 3}
+  - {fileID: 2100000, guid: 9736c388f4bba03429c6b672bbedb228, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -255,7 +255,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1292443423991321414, guid: 00414ab3595b06542a191cd024016340, type: 3}
+  - {fileID: 2100000, guid: 9736c388f4bba03429c6b672bbedb228, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -336,7 +336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 239378781582670930, guid: 00414ab3595b06542a191cd024016340, type: 3}
+  - {fileID: 2100000, guid: 9736c388f4bba03429c6b672bbedb228, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
