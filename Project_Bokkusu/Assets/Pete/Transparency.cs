@@ -5,15 +5,12 @@ using UnityEngine;
 public class Transparency : MonoBehaviour
 {
     public GameObject girl;
-    float r, g, b, t;
+    float  t;
 
     float x;
     // Start is called before the first frame update
     void Start()
     {
-        r = 62;
-        g = 66;
-        b = 82;
         t = 0;
         for (int i = 0; i < 4; i++)
         {
@@ -21,6 +18,7 @@ public class Transparency : MonoBehaviour
             material.GetComponent<Renderer>().enabled = false;
         }
         x = 2.0f;
+        girl.GetComponent<AudioSource>().Stop();
     }
 
     // Update is called once per frame
@@ -28,6 +26,7 @@ public class Transparency : MonoBehaviour
     {
         x-=Time.deltaTime;
         print(x);
+        girl.GetComponent<AudioSource>().Play();
         if (x < 0)
         {
             for (int i = 0; i < 4; i++)
@@ -35,7 +34,7 @@ public class Transparency : MonoBehaviour
                 var material = girl.transform.GetChild(i);
                 material.GetComponent<Renderer>().enabled = true;
             }
-            t += 0.0003f;
+            t += 0.0006f;
             if (t >= 0.5f)
             {
                 t = 0.5f;
