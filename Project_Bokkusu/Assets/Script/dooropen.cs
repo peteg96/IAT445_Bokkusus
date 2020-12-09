@@ -28,7 +28,6 @@ public class dooropen : MonoBehaviour
             doorR.SetInteger("state", 1);
             right = 1;
         }
-        print(left + right);
         if (this.tag == "BackDoor" && character.GetComponent<state_detector>().num == 6 && leftGame.GetComponent<game_light>().state)
         {
             doorL.SetInteger("state", 1);
