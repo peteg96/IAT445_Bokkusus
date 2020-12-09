@@ -18,15 +18,14 @@ public class Transparency : MonoBehaviour
             material.GetComponent<Renderer>().enabled = false;
         }
         x = 2.0f;
-        girl.GetComponent<AudioSource>().Stop();
+        girl.GetComponent<AudioSource>().Pause();
     }
 
     // Update is called once per frame
     void Update()
     {
         x-=Time.deltaTime;
-        print(x);
-        girl.GetComponent<AudioSource>().Play();
+        if(girl.GetComponent<AudioSource>().isPlaying == false) girl.GetComponent<AudioSource>().Play();
         if (x < 0)
         {
             for (int i = 0; i < 4; i++)
@@ -38,6 +37,7 @@ public class Transparency : MonoBehaviour
             if (t >= 0.5f)
             {
                 t = 0.5f;
+                girl.GetComponent<AudioSource>().Stop();
             }
             for (int i = 0; i < 4; i++)
             {
