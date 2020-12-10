@@ -20,8 +20,9 @@ public class item : MonoBehaviour
             {
                 this.GetComponent<Rigidbody>().useGravity = false;
                 this.GetComponent<BoxCollider>().enabled = false;
-                this.transform.localRotation = holder.transform.rotation;
+                
                 this.transform.position = holder.transform.position;
+                this.transform.rotation = holder.transform.rotation;
             }
             else
             {
@@ -47,7 +48,7 @@ public class item : MonoBehaviour
         if (other.tag == this.tag && Input.GetMouseButton(0) == false && triggered == false)
         {
             this.transform.position = new Vector3(other.transform.position.x, 2, other.transform.position.z);
-            this.transform.rotation = new Quaternion(0, 0, 0, 0);
+            this.transform.rotation = new Quaternion(0, 90, 0, 0);
             this.GetComponent<Rigidbody>().useGravity = true;
             this.GetComponent<BoxCollider>().enabled = true;
             triggered = true;
