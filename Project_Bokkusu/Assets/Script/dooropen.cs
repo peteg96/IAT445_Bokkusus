@@ -6,8 +6,7 @@ public class dooropen : MonoBehaviour
 {
     public Animator doorL, doorR;
     public GameObject lefthouse, leftGame, rightthouse, character, mainhouse;
-    private int left = 0, right = 0;
-    public bool open;
+    //private int left = 0, right = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +72,6 @@ public class dooropen : MonoBehaviour
             {
                 if (mainhouse.GetComponent<roomCheck>().inRoomCheck == false)
                 {
-                    open = true;
                     doorL.SetInteger("state", 1);
                     doorR.SetInteger("state", 1);
                 }
