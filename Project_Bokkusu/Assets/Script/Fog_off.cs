@@ -20,11 +20,7 @@ public class Fog_off : MonoBehaviour
         if (col.tag == "Player" )
         {
             RenderSettings.fog = false;
-<<<<<<< HEAD
-           
-=======
 
->>>>>>> badd28d777c47042c49fd12facfcc56d452dfb2d
         }
 
 
