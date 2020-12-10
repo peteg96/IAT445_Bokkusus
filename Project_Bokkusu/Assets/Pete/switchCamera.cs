@@ -7,7 +7,7 @@ public class switchCamera : MonoBehaviour
     public GameObject Player, state_left, state_right, box;
     public GameObject Camera;
     
-    bool reveal = false;
+    
     float time_left = 8.0f, time_right = 8.0f;
     // Start is called before the first frame update
     void Start()

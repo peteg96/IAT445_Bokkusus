@@ -6,7 +6,7 @@ public class dooropen : MonoBehaviour
 {
     public Animator doorL, doorR;
     public GameObject lefthouse, leftGame, rightthouse, character, mainhouse;
-    private int left = 0, right = 0;
+    //private int left = 0, right = 0;
     // Start is called before the first frame update
     void Start()
     {
