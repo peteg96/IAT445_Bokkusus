@@ -20,7 +20,7 @@ public class Fog_off : MonoBehaviour
         if (col.tag == "Player" )
         {
             RenderSettings.fog = false;
-            print("++++");
+
         }
 
 

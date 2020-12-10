@@ -6,7 +6,7 @@ public class raycast : MonoBehaviour
 {
     int layer = 1 << 8; //ray will only interate with items in layer 8
     public GameObject spirit, UI;
-    float timer = 4.0f;
+    float timer = 8.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +22,17 @@ public class raycast : MonoBehaviour
         {
             timer -= Time.deltaTime;
             UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite: \n Knight release me.";
         }
-            
-            
+
+
 
         //if (Physics.Raycast(transform.position, forward, 50, layer) && spirit.GetComponent<Transform>().position == new Vector3((float)19.5, (float)1.8682, (float)13.44))spirit.GetComponent<Animator>().SetInteger("state", 2); // check is object reach the position, if yes, change state
 
-        if (timer < 0) spirit.GetComponent<Animator>().SetInteger("state", 1); //check animation state and is ray hit object, if yes, change state
-
+        if (timer < 0)
+        {
+            UI.SetActive(false);
+            spirit.GetComponent<Animator>().SetInteger("state", 1); //check animation state and is ray hit object, if yes, change state
+        }
     }
 }
