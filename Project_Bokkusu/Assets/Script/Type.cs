@@ -8,24 +8,34 @@ public class Type : MonoBehaviour
     public float delay = 0.1f;
     public string fullText;
     private string currentText = "";
+    public string textShow = "";
     
-    int pause = 0;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ShowText());
+       
         
     }
+
+    private void Update()
+    {
+        if (fullText != textShow)
+        {
+            textShow = fullText;
+            StartCoroutine(ShowText());
+        }
+    }
+
     IEnumerator ShowText(){
 
-        char[] chars = fullText.ToCharArray();
+        char[] chars = textShow.ToCharArray();
         for ( int i = 0; i <= chars.Length - 1; i++)
         {
             
-            pause++;
-            if (chars[i] == ' ')
+            if (chars[i] == ' ' && i % 3 == 0)
             {
-                yield return new WaitForSeconds(delay * 3);
+                
+                yield return new WaitForSeconds(delay * 2);
             }
             currentText = fullText.Substring(0, i + 1);
             this.GetComponent<Text>().text = currentText;
