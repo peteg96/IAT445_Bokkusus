@@ -6,7 +6,7 @@ public class Transparency : MonoBehaviour
 {
     public GameObject girl, box, seal;
     float  t;
-    bool state = false;
+    public bool state = false;
     float x;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,6 @@ public class Transparency : MonoBehaviour
     {
         if (state)
         {
-            print(seal.GetComponent<Animator>().GetBool("boxOpen"));
             seal.GetComponent<Animator>().SetBool("boxOpen", true);
             box.GetComponent<Animator>().SetBool("open", true);
             x -= Time.deltaTime;
@@ -57,6 +56,11 @@ public class Transparency : MonoBehaviour
                     var material = girl.transform.GetChild(i);
                     ChangeAlpha(material.GetComponent<Renderer>().material, t);
                 }
+            }
+
+            if (t == 0.5)
+            {
+                this.GetComponent<Animator>().SetBool("state", true);
             }
         }       
     }

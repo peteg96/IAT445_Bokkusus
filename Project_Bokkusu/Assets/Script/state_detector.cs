@@ -5,7 +5,7 @@ using UnityEngine;
 public class state_detector : MonoBehaviour
 {
     public bool isholding;
-    public GameObject seal, sealcage, lightgame;
+    public GameObject seal, sealcage, lightgame, sealL;
     public int num;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,7 @@ public class state_detector : MonoBehaviour
     {
 
         if (num == 6) seal.SetActive(false);
+        if (lightgame.GetComponent<game_light>().state) sealL.SetActive(false);
         if (num == 6 && lightgame.GetComponent<game_light>().state) sealcage.SetActive(false);
     }
 

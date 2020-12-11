@@ -5,10 +5,10 @@ using UnityEngine;
 public class raycast : MonoBehaviour
 {
     int layer = 1 << 8, num = 0; //ray will only interate with items in layer 8
-    public GameObject spirit, UI, frontDoor, mainDoor,backDoor, leftRoom, rightRoom, mainHouse;
+    public GameObject spirit, UI, frontDoor, mainDoor, backDoor, leftRoom, rightRoom, mainHouse, cageSeal, clothSeal, letterSeal,cage, cloth, letter, box;
     float timer;
     int state = 0;
-    bool start, left,right;
+    bool start, left,right, clothCheck, letterCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +51,50 @@ public class raycast : MonoBehaviour
             right = false;
             num ++;
         }
+        else if (cageSeal.activeSelf == false && cage.GetComponent<roomCheck>().inRoomCheck && state == 3)
+        {
+            state = 4;
+            timer = 18f;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nI hate this tenebrous cage, but somehow I feel familiar with it... \nPlease forgive me, my lord.";
+        }
+        else if (state == 4 && timer < 10)
+        {
+            state = 5;
+            UI.GetComponent<Type>().fullText = "\nI was prisoned, locked in it for so long without seeing my love. \nThis is only because of the stupid class gap between our families.";
+        }
+        else if (clothSeal.activeSelf == false && cloth.GetComponent<roomCheck>().inRoomCheck && clothCheck == false)
+        {
+            clothCheck = true;
+            timer = 4;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nHe used to love me wearing it so much.";
+        }
+        else if (letterSeal.activeSelf == false && letter.GetComponent<roomCheck>().inRoomCheck && letterCheck == false)
+        {
+            letterCheck = true;
+            timer = 7;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nHis last letter promised to marry me when he came back,but that day never comes.";
+        }
+        else if (state == 6)
+        {
+            state = 7;
+            timer = 2f;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nHere, my lord.";
+        }
+        else if( state == 7 && box.GetComponent<Transparency>().state)
+        {
+            state = 8;
+            timer = 15f;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nThank you, my lord. \nI can finally leave here to see my love in another world.";
+        }
+
+
+        
+
 
 
         if (num == 3 && state == 0)
@@ -60,15 +104,15 @@ public class raycast : MonoBehaviour
             UI.GetComponent<Type>().fullText = "Sprite:\nThat is unfortunate…\nI assure you the door will be open if you complete the puzzle.";
             state = 1;
         }
-        else if (num == 4 && state == 1)
+        else if (num == 4 && state == 2)
     {
-            state = 2;
+            state = 3;
             timer = 3f;
             UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nHalfway to go, My lord.";
+            UI.GetComponent<Type>().fullText = "Sprite:\nI am with you, My lord.";
+            
     }
 
-        print(timer);
         if(timer > 0) timer -= Time.deltaTime;
         else if (timer < 0)
         {
@@ -78,6 +122,13 @@ public class raycast : MonoBehaviour
 
             if (spirit.GetComponent<Animator>().GetInteger("state") == 0)
             spirit.GetComponent<Animator>().SetInteger("state", 1); //check animation state and is ray hit object, if yes, change state
+            if (state == 5)
+            {
+                state = 6;
+                spirit.GetComponent<Animator>().SetInteger("state", 4);
+            }
+
+            if (state == 8) spirit.SetActive(true);
         }
 
 
@@ -85,6 +136,12 @@ public class raycast : MonoBehaviour
         {
             spirit.GetComponent<Animator>().SetInteger("state", 3);
         }
-
+        if(num == 3 && mainHouse.GetComponent<roomCheck>().inRoomCheck && UI.activeSelf == false && state == 1)
+        {
+            state = 2;
+            timer = 4;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nHalfway to go, My lord.";
+        }
     }
 }
