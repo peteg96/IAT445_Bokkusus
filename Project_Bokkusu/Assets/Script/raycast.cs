@@ -5,7 +5,7 @@ using UnityEngine;
 public class raycast : MonoBehaviour
 {
     int layer = 1 << 8, num = 0; //ray will only interate with items in layer 8
-    public GameObject spirit, UI, frontDoor, mainDoor, leftRoom, rightRoom, mainHouse;
+    public GameObject spirit, UI, frontDoor, mainDoor,backDoor, leftRoom, rightRoom, mainHouse;
     float timer;
     int state = 0;
     bool start, left,right;
@@ -22,7 +22,7 @@ public class raycast : MonoBehaviour
         //print(rightRoom.GetComponent<dooropen>().open);
         Vector3 forward = transform.TransformDirection(Vector3.forward * 2); //set the direction of the ray
         if (Physics.Raycast(transform.position, forward, 50, layer) &&
-            spirit.GetComponent<Animator>().GetInteger("state") == 0)
+            spirit.GetComponent<Animator>().GetInteger("state") == 0 && timer == 0)
         {
             timer = 11f;
             UI.SetActive(true);
@@ -53,23 +53,22 @@ public class raycast : MonoBehaviour
         }
 
 
-
-        if (num == 3)
+        if (num == 3 && state == 0)
         {
              timer = 7f;
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nThat is unfortunate…\nI assure you the door will be open if you complete the puzzle.";
             state = 1;
         }
-        else if (num == 4)
+        else if (num == 4 && state == 1)
     {
-            timer = 2f;
+            state = 2;
+            timer = 3f;
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nHalfway to go, My lord.";
     }
 
-
-        //print(timer);
+        print(timer);
         if(timer > 0) timer -= Time.deltaTime;
         else if (timer < 0)
         {

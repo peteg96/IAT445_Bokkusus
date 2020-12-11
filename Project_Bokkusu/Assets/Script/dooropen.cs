@@ -105,6 +105,7 @@ public class dooropen : MonoBehaviour
         {
             doorL.SetInteger("state", -1);
             doorR.SetInteger("state", -1);
+            open = false;
         }
     }
 }
