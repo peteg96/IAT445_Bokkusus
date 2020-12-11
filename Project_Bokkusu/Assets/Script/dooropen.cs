@@ -6,6 +6,7 @@ public class dooropen : MonoBehaviour
 {
     public Animator doorL, doorR;
     public GameObject lefthouse, leftGame, rightthouse, character, mainhouse;
+    public bool open;
     //private int left = 0, right = 0;
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,18 @@ public class dooropen : MonoBehaviour
             doorL.SetInteger("state", 1);
             doorR.SetInteger("state", 1);
         }
+
+        if (this.tag == "LeftDoor")
+        {
+            if (lefthouse.GetComponent<roomCheck>().inRoomCheck)
+            {
+                open = true;
+            }
+        }
+        if (this.tag == "RightDoor")
+        {
+            if (rightthouse.GetComponent<roomCheck>().inRoomCheck) open = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,6 +87,7 @@ public class dooropen : MonoBehaviour
                 {
                     doorL.SetInteger("state", 1);
                     doorR.SetInteger("state", 1);
+                    open = true;
                 }
             }
             else if (this.tag == "BackDoor") { }
