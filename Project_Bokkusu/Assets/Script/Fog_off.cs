@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Fog_off : MonoBehaviour
 {
+    public Material skb;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class Fog_off : MonoBehaviour
         if (col.tag == "Player" )
         {
             RenderSettings.fog = false;
-
+            RenderSettings.skybox = skb;
         }
 
 
