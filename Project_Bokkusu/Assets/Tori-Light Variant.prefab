@@ -169,6 +169,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3281954366725427758, guid: 0022549adc9ac7243aa6183eeb6359be,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4282147003440088539, guid: 0022549adc9ac7243aa6183eeb6359be,
         type: 3}
       propertyPath: m_Name
@@ -177,21 +182,41 @@ PrefabInstance:
     - target: {fileID: 4918006031196387178, guid: 0022549adc9ac7243aa6183eeb6359be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.088
+      value: 1.085
       objectReference: {fileID: 0}
     - target: {fileID: 4918006031196387178, guid: 0022549adc9ac7243aa6183eeb6359be,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.237
+      value: 0.209
       objectReference: {fileID: 0}
     - target: {fileID: 4918006031196387179, guid: 0022549adc9ac7243aa6183eeb6359be,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4918006032309018148, guid: 0022549adc9ac7243aa6183eeb6359be,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918006032309018148, guid: 0022549adc9ac7243aa6183eeb6359be,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947582930435606575, guid: 0022549adc9ac7243aa6183eeb6359be,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8234112118305926896, guid: 0022549adc9ac7243aa6183eeb6359be,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819267955145386724, guid: 0022549adc9ac7243aa6183eeb6359be,
+        type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
