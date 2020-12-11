@@ -31,8 +31,7 @@ public class raycast : MonoBehaviour
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nMy Honorable lord, I am an innocent soul imprisoned here for so long." +
                 " \nHelp me, I shall lead the way.";
-            audio.clip = a1;
-            audio.Play();
+            audio.PlayOneShot(a1, 1);
         }
         else if (mainDoor.GetComponent<roomCheck>().inRoomCheck && num == 0)
         {
