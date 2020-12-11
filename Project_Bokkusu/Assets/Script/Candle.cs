@@ -4,35 +4,70 @@ using UnityEngine;
 
 public class Candle : MonoBehaviour
 {
-    
+
     public GameObject light;
     public GameObject fire;
-   
-    bool state = true;
-    
+    public AudioClip lightUp, lightOff;
+    AudioSource audio;
+    float timer;
+    bool state = false, sswitch = true;
     private void Start()
     {
-       
+        audio = this.GetComponent<AudioSource>();
     }
-    void OnTriggerStay(Collider col)
+    void OnTriggerEnter(Collider col)
     {
-        
-        if (col.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.E))
+
+        if (col.gameObject.tag == "Player")
         {
-            
-            if (state == true) state = false;
-            else state = true;
+
+            state = true;
             //switch the state 
         }
-        
-        
+
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player") state = false;
     }
     private void Update()
     {
-        light.SetActive(state);// turn on or off the light
-        fire.SetActive(state);
+        if (state && Input.GetKeyDown(KeyCode.E))
+        {
+            if (sswitch)
+            {
+                audio.PlayOneShot(lightOff, 1);
+                StartCoroutine(ExampleCoroutine());
+                
+            }
+            else
+            {
+                audio.PlayOneShot(lightUp, 1);
+                StartCoroutine(ExampleCoroutine());
+            }
+        }
+
+        
     }
-   
 
 
+    IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (sswitch)
+        {
+            yield return new WaitForSeconds(0.5f);
+            sswitch = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+            sswitch = true;
+        }
+        light.SetActive(sswitch);
+        fire.SetActive(sswitch);
+
+    }
 }
