@@ -15,6 +15,15 @@ TagManager:
   - BackDoor
   - 3
   - fontDoor
+  - 9
+  - 4
+  - 2
+  - 7
+  - 1
+  - 6
+  - 5
+  - 8
+  - ground
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ public class item : MonoBehaviour
 {
     private bool state, grabable = true, triggered;
     public GameObject holder, texts, lights;
+    public AudioClip drop;
     void Start()
     {
         
@@ -40,7 +41,7 @@ public class item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
+       if (other.tag == "ground" && Input.GetMouseButton(0) == false) this.GetComponent<AudioSource>().PlayOneShot(drop, 0.1f);
     }
 
     private void OnTriggerStay(Collider other)

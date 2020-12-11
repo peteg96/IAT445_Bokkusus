@@ -39,13 +39,13 @@ public class Candle : MonoBehaviour
             if (sswitch)
             {
                 audio.PlayOneShot(lightOff, 1);
-                StartCoroutine(ExampleCoroutine());
+                StartCoroutine(Coroutine());
                 
             }
             else
             {
                 audio.PlayOneShot(lightUp, 1);
-                StartCoroutine(ExampleCoroutine());
+                StartCoroutine(Coroutine());
             }
         }
 
@@ -53,7 +53,7 @@ public class Candle : MonoBehaviour
     }
 
 
-    IEnumerator ExampleCoroutine()
+    IEnumerator Coroutine()
     {
         yield return new WaitForSeconds(0.5f);
         if (sswitch)

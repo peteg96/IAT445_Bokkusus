@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Transparency : MonoBehaviour
 {
-    public GameObject girl, box, seal;
+    public GameObject girl, box, seal, sprite;
     float  t;
     public bool state = false;
     float x;
@@ -26,6 +26,8 @@ public class Transparency : MonoBehaviour
     {
         if (state)
         {
+            
+            sprite.SetActive(false);
             seal.GetComponent<Animator>().SetBool("boxOpen", true);
             box.GetComponent<Animator>().SetBool("open", true);
             x -= Time.deltaTime;
@@ -60,9 +62,12 @@ public class Transparency : MonoBehaviour
 
             if (t == 0.5)
             {
-                this.GetComponent<Animator>().SetBool("state", true);
+
+                //sprite.SetActive(true);
+                //sprite.GetComponent<Animator>().SetInteger("state", 5);
             }
-        }       
+        }
+
     }
     void ChangeAlpha(Material mat, float alphaVal)
     {

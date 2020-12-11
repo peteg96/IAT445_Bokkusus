@@ -5,11 +5,11 @@ using UnityEngine;
 public class raycast : MonoBehaviour
 {
     int layer = 1 << 8, num = 0; //ray will only interate with items in layer 8
-    public GameObject spirit, UI, frontDoor, mainDoor, backDoor, leftRoom, rightRoom, mainHouse, cageSeal, clothSeal, letterSeal,cage, cloth, letter, box;
+    public GameObject spirit, UI, frontDoor, mainDoor, backDoor, leftRoom, rightRoom, mainHouse, cageSeal, clothSeal, letterSeal, cage, cloth, letter, box, sprite2;
     public AudioClip a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12;
     float timer;
     int state = 0;
-    bool start, left,right, clothCheck, letterCheck;
+    bool start, left, right, clothCheck, letterCheck;
     AudioSource audio;
     // Start is called before the first frame update
     void Start()
@@ -49,23 +49,25 @@ public class raycast : MonoBehaviour
             UI.GetComponent<Type>().fullText = "Sprite:\nI will be released if you complete the puzzle in each room.";
             audio.PlayOneShot(a3, 1);
         }
-        else if ((leftRoom.GetComponent<dooropen>().open && left)){
+        else if ((leftRoom.GetComponent<dooropen>().open && left))
+        {
             left = false;
-            num ++;
+            num++;
         }
-        else if ((rightRoom.GetComponent<dooropen>().open && right)){
+        else if ((rightRoom.GetComponent<dooropen>().open && right))
+        {
             right = false;
-            num ++;
+            num++;
         }
         else if (cageSeal.activeSelf == false && cage.GetComponent<roomCheck>().inRoomCheck && state == 3)
         {
             state = 4;
-            timer = 28f;
+            timer = 30f;
             audio.PlayOneShot(a9, 1);
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nI hate this tenebrous cage, but somehow I feel familiar with it... \nPlease forgive me, my lord.";
         }
-        else if (state == 4 && timer < 30)
+        else if (state == 4 && timer < 16)
         {
             state = 5;
             UI.GetComponent<Type>().fullText = "\nI was prisoned, locked in it for so long without seeing my love. \nThis is only because of the stupid class gap between our families.";
@@ -86,47 +88,35 @@ public class raycast : MonoBehaviour
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nHis last letter promised to marry me when he came back,but that day never comes.";
         }
-        else if (state == 6)
-        {
-            state = 7;
-            timer = 2f;
-            audio.PlayOneShot(a10, 1);
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nHere, my lord.";
-        }
-        else if( state == 7 && box.GetComponent<Transparency>().state)
+        else if (state == 6 && timer < 0) StartCoroutine(finalCoroutine());
+        else if (state == 7 && box.GetComponent<Transparency>().state)
         {
             state = 8;
-            timer = 15f;
+            timer = 10f;
             audio.PlayOneShot(a11, 1);
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nThank you, my lord. \nI can finally leave here to see my love in another world.";
         }
-
-
-        
-
-
-
-        if (num == 3 && state == 0)
+        else if (state == 8 && timer < 0)
         {
-             timer = 7f;
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nThat is unfortunate…\nI assure you the door will be open if you complete the puzzle.";
-            state = 1;
-            audio.PlayOneShot(a4, 1);
-        }
-        else if (num == 4 && state == 2)
-    {
-            state = 3;
-            timer = 3f;
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nI am with you, My lord.";
-            audio.PlayOneShot(a7, 1);
+            state = 9;
 
+            box.SetActive(false);
+            sprite2.SetActive(true);
+            timer = 6;
+            audio.PlayOneShot(a12, 1);
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nFarewell, My honourable lord.";
         }
 
-        if(timer > 0) timer -= Time.deltaTime;
+
+
+        if (num == 3 && state == 0) StartCoroutine(Coroutine());
+        else if (num == 4 && state == 2) StartCoroutine(Coroutine());
+
+
+
+        if (timer > 0) timer -= Time.deltaTime;
         else if (timer < 0)
         {
             UI.GetComponent<Type>().fullText = "Sprite:";
@@ -134,14 +124,14 @@ public class raycast : MonoBehaviour
 
 
             if (spirit.GetComponent<Animator>().GetInteger("state") == 0)
-            spirit.GetComponent<Animator>().SetInteger("state", 1); //check animation state and is ray hit object, if yes, change state
+                spirit.GetComponent<Animator>().SetInteger("state", 1); //check animation state and is ray hit object, if yes, change state
             if (state == 5)
             {
                 state = 6;
                 spirit.GetComponent<Animator>().SetInteger("state", 4);
             }
 
-            if (state == 8) spirit.SetActive(true);
+            
         }
 
 
@@ -149,13 +139,49 @@ public class raycast : MonoBehaviour
         {
             spirit.GetComponent<Animator>().SetInteger("state", 3);
         }
-        if(num == 3 && mainHouse.GetComponent<roomCheck>().inRoomCheck && UI.activeSelf == false && state == 1)
+        if (num == 3 && mainHouse.GetComponent<roomCheck>().inRoomCheck && UI.activeSelf == false && state == 1)
         {
             state = 2;
             timer = 4;
             audio.PlayOneShot(a6, 1);
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nHalfway to go, My lord.";
+        }
+    }
+
+    IEnumerator Coroutine()
+    {
+        yield return new WaitForSeconds(4f);
+        if (num == 3 && state == 0)
+        {
+
+            timer = 7f;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nThat is unfortunate…\nI assure you the door will be open if you complete the puzzle.";
+            state = 1;
+            audio.PlayOneShot(a4, 1);
+        }
+        else if (num == 4 && state == 2)
+        {
+            state = 3;
+            timer = 3f;
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nI am with you, My lord.";
+            audio.PlayOneShot(a7, 1);
+
+        }
+    }
+
+    IEnumerator finalCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        if (timer < 0 && state == 6)
+        {
+            state = 7;
+            timer = 2f;
+            audio.PlayOneShot(a10, 1);
+            UI.SetActive(true);
+            UI.GetComponent<Type>().fullText = "Sprite:\nHere, my lord.";
         }
     }
 }
