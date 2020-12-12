@@ -5,13 +5,14 @@ using UnityEngine;
 public class raycast : MonoBehaviour
 {
     int layer = 1 << 8, num = 0; //ray will only interate with items in layer 8
-    public GameObject spirit, UI, frontDoor, mainDoor, backDoor, leftRoom, rightRoom, mainHouse, cageSeal, clothSeal, letterSeal, cage, cloth, letter, box, sprite2;
+    public GameObject spirit, UI, frontDoor, mainDoor, backDoor, leftRoom, rightRoom, mainHouse, cageSeal, clothSeal, 
+        letterSeal, cage, cloth, letter, box, sprite2, bgm1, bgm2, GUI;
     public AudioClip a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12;
     float timer;
     int state = 0;
     bool start, left, right, clothCheck, letterCheck;
     AudioSource audio;
-    // Start is called before the first frame update
+    // Start is called before the first frame update    
     void Start()
     {
         left = true;
@@ -61,11 +62,15 @@ public class raycast : MonoBehaviour
         }
         else if (cageSeal.activeSelf == false && cage.GetComponent<roomCheck>().inRoomCheck && state == 3)
         {
-            state = 4;
-            timer = 30f;
-            audio.PlayOneShot(a9, 1);
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nI hate this tenebrous cage, but somehow I feel familiar with it... \nPlease forgive me, my lord.";
+            GUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                state = 4;
+                timer = 30f;
+                audio.PlayOneShot(a9, 1);
+                UI.SetActive(true);
+                UI.GetComponent<Type>().fullText = "Sprite:\nI hate this tenebrous cage, but somehow I feel familiar with it... \nPlease forgive me, my lord.";
+            }
         }
         else if (state == 4 && timer < 16)
         {
@@ -74,23 +79,34 @@ public class raycast : MonoBehaviour
         }
         else if (clothSeal.activeSelf == false && cloth.GetComponent<roomCheck>().inRoomCheck && clothCheck == false)
         {
-            clothCheck = true;
-            timer = 4;
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nHe used to love me wearing it so much.";
-            audio.PlayOneShot(a5, 1);
+            GUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                clothCheck = true;
+                timer = 4;
+                UI.SetActive(true);
+                UI.GetComponent<Type>().fullText = "Sprite:\nHe used to love me wearing it so much.";
+                audio.PlayOneShot(a5, 1);
+                GUI.SetActive(false);
+            }
         }
         else if (letterSeal.activeSelf == false && letter.GetComponent<roomCheck>().inRoomCheck && letterCheck == false)
         {
-            letterCheck = true;
-            timer = 9;
-            audio.PlayOneShot(a8, 1);
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nHis last letter promised to marry me when he came back,but that day never comes.";
+            GUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                letterCheck = true;
+                timer = 9;
+                audio.PlayOneShot(a8, 1);
+                UI.SetActive(true);
+                UI.GetComponent<Type>().fullText = "Sprite:\nHis last letter promised to marry me when he came back,but that day never comes.";
+            }
         }
         else if (state == 6 && timer < 0) StartCoroutine(finalCoroutine());
         else if (state == 7 && box.GetComponent<Transparency>().state)
         {
+            bgm1.SetActive(false);
+            bgm2.SetActive(true);
             state = 8;
             timer = 10f;
             audio.PlayOneShot(a11, 1);

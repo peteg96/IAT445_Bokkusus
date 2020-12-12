@@ -5,7 +5,7 @@ using UnityEngine;
 public class item : MonoBehaviour
 {
     private bool state, grabable = true, triggered;
-    public GameObject holder, texts, lights;
+    public GameObject holder, texts, lights, GUI2;
     public AudioClip drop;
     void Start()
     {
@@ -19,6 +19,7 @@ public class item : MonoBehaviour
             
             if (state)
             {
+                GUI2.SetActive(false);
                 this.GetComponent<Rigidbody>().useGravity = false;
                 this.GetComponent<BoxCollider>().enabled = false;
                 
@@ -42,6 +43,7 @@ public class item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
        if (other.tag == "ground" && Input.GetMouseButton(0) == false) this.GetComponent<AudioSource>().PlayOneShot(drop, 0.1f);
+        if (other.tag == "Player" && holder.GetComponent<state_detector>().isholding == false) GUI2.SetActive(true);
     }
 
     private void OnTriggerStay(Collider other)
@@ -73,6 +75,6 @@ public class item : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //if (other.tag == "base1") triggered = false;
+        if (other.tag == "Player") GUI2.SetActive(false);
     }
 }
