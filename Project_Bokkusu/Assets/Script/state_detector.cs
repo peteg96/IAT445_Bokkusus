@@ -18,8 +18,13 @@ public class state_detector : MonoBehaviour
     void Update()
     {
 
-        if (num == 6) seal.SetActive(false);
-        if (lightgame.GetComponent<game_light>().state) sealL.SetActive(false);
+        if (num == 6)
+        {
+            //seal.SetActive(false);
+        }
+        if (lightgame.GetComponent<game_light>().state){
+            //sealL.SetActive(false);
+            }
         if (num == 6 && lightgame.GetComponent<game_light>().state) sealcage.SetActive(false);
     }
 

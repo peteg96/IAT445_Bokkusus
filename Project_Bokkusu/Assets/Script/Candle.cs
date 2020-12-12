@@ -5,7 +5,7 @@ using UnityEngine;
 public class Candle : MonoBehaviour
 {
 
-    public GameObject light;
+    public GameObject light, GUI;
     public GameObject fire;
     public AudioClip lightUp, lightOff;
     AudioSource audio;
@@ -22,6 +22,7 @@ public class Candle : MonoBehaviour
         {
 
             state = true;
+            GUI.SetActive(true);
             //switch the state 
         }
 
@@ -30,7 +31,11 @@ public class Candle : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player") state = false;
+        if (other.tag == "Player")
+        {
+            state = false;
+            GUI.SetActive(false);
+        }
     }
     private void Update()
     {
@@ -38,13 +43,13 @@ public class Candle : MonoBehaviour
         {
             if (sswitch)
             {
-                audio.PlayOneShot(lightOff, 1);
+                audio.PlayOneShot(lightOff, 0.3f);
                 StartCoroutine(Coroutine());
                 
             }
             else
             {
-                audio.PlayOneShot(lightUp, 1);
+                audio.PlayOneShot(lightUp, 0.3f);
                 StartCoroutine(Coroutine());
             }
         }
