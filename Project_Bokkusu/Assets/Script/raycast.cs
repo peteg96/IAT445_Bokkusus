@@ -65,6 +65,7 @@ public class raycast : MonoBehaviour
             GUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                GUI.SetActive(false);
                 state = 4;
                 timer = 30f;
                 audio.PlayOneShot(a9, 1);

@@ -42,10 +42,9 @@ public class item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       if (other.tag == "ground" && Input.GetMouseButton(0) == false) this.GetComponent<AudioSource>().PlayOneShot(drop, 0.1f);
-        if (other.tag == "Player" && holder.GetComponent<state_detector>().isholding == false) GUI2.SetActive(true);
+        if (other.tag == "ground" && Input.GetMouseButton(0) == false) this.GetComponent<AudioSource>().PlayOneShot(drop, 0.1f);
+        if (other.tag == "Player" && holder.GetComponent<state_detector>().isholding == false && grabable) GUI2.SetActive(true);
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == this.tag && Input.GetMouseButton(0) == false && triggered == false)
