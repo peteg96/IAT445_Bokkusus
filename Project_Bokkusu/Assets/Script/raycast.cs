@@ -106,7 +106,6 @@ public class raycast : MonoBehaviour
         else if (state == 6 && timer < 0) StartCoroutine(finalCoroutine());
         else if (state == 7 && box.GetComponent<Transparency>().state)
         {
-            GUI.SetActive(false);
                 bgm1.SetActive(false);
                 bgm2.SetActive(true);
                 state = 8;

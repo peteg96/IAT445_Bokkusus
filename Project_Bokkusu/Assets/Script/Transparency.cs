@@ -70,7 +70,7 @@ public class Transparency : MonoBehaviour
         }
 
 
-        if (inrange && state == false)
+        if (inrange)
         {
             ui.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E)){
