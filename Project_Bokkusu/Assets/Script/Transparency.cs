@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Transparency : MonoBehaviour
 {
-    public GameObject girl, box, seal, sprite;
+    public GameObject girl, box, seal, sprite, ui;
     float  t;
     public bool state = false;
     float x;
+    bool inrange;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +69,16 @@ public class Transparency : MonoBehaviour
             }
         }
 
+
+        if (inrange)
+        {
+            ui.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E)){
+                state = true;
+                ui.SetActive(false);
+            }
+
+        }
     }
     void ChangeAlpha(Material mat, float alphaVal)
     {
@@ -79,6 +90,6 @@ public class Transparency : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") state = true;
+        if (other.tag == "Player") inrange = true;
     }
 }

@@ -10,7 +10,7 @@ public class raycast : MonoBehaviour
     public AudioClip a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12;
     float timer;
     int state = 0;
-    bool start, left, right, clothCheck, letterCheck;
+    bool start, left, right, clothCheck, letterCheck, ispause;
     AudioSource audio;
     // Start is called before the first frame update    
     void Start()
@@ -106,13 +106,13 @@ public class raycast : MonoBehaviour
         else if (state == 6 && timer < 0) StartCoroutine(finalCoroutine());
         else if (state == 7 && box.GetComponent<Transparency>().state)
         {
-            bgm1.SetActive(false);
-            bgm2.SetActive(true);
-            state = 8;
-            timer = 10f;
-            audio.PlayOneShot(a11, 1);
-            UI.SetActive(true);
-            UI.GetComponent<Type>().fullText = "Sprite:\nThank you, my lord. \nI can finally leave here to see my love in another world.";
+                bgm1.SetActive(false);
+                bgm2.SetActive(true);
+                state = 8;
+                timer = 10f;
+                audio.PlayOneShot(a11, 1);
+                UI.SetActive(true);
+                UI.GetComponent<Type>().fullText = "Sprite:\nThank you, my lord. \nI can finally leave here to see my love in another world.";
         }
         else if (state == 8 && timer < 0)
         {
@@ -164,6 +164,18 @@ public class raycast : MonoBehaviour
             UI.SetActive(true);
             UI.GetComponent<Type>().fullText = "Sprite:\nHalfway to go, My lord.";
         }
+
+        if (Time.timeScale == 0)
+        {
+            audio.Pause();
+            ispause = true;
+        }
+        else if (ispause && Time.timeScale > 0)
+        {
+            ispause = false;
+            audio.Play();
+        }
+
     }
 
     IEnumerator Coroutine()
